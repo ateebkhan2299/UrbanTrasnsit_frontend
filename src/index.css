@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DUAL MODE THEME ENGINE (CSS VARIABLES)
+   Mode 1: Light Mode (Pure White bg, Red cards, Red text/headings)
+   Mode 2: Red Mode (Deep Red bg, White cards, White headings, Dark text on cards)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+:root, body.light-mode {
+  --bg-color: #FFFFFF;
+  --bg-secondary: #F8F9FA;
+  --card-color: #E31E24;
+  --card-border: #C81E1E;
+  --card-text: #FFFFFF;
+  --card-subtext: rgba(255, 255, 255, 0.85);
+  --heading-color: #E31E24;
+  --text-color: #8B0000;
+  --subtext-color: #555555;
+  --btn-bg: #FFFFFF;
+  --btn-text: #E31E24;
+  --btn-border: #E31E24;
+  --btn-hover-bg: #E31E24;
+  --btn-hover-text: #FFFFFF;
+  --icon-bg: #FFFFFF;
+  --icon-stroke: #E31E24;
+  --badge-bg: rgba(227, 30, 36, 0.1);
+  --badge-text: #E31E24;
+  --table-header-bg: #FFF5F5;
+  --table-border: #FEE2E2;
+}
+
+body.red-mode {
+  --bg-color: #E31E24;
+  --bg-secondary: #C81E1E;
+  --card-color: #FFFFFF;
+  --card-border: rgba(255, 255, 255, 0.3);
+  --card-text: #111111;
+  --card-subtext: #4B5563;
+  --heading-color: #FFFFFF;
+  --text-color: #FFFFFF;
+  --subtext-color: rgba(255, 255, 255, 0.85);
+  --btn-bg: #E31E24;
+  --btn-text: #FFFFFF;
+  --btn-border: #FFFFFF;
+  --btn-hover-bg: #FFFFFF;
+  --btn-hover-text: #E31E24;
+  --icon-bg: #E31E24;
+  --icon-stroke: #FFFFFF;
+  --badge-bg: rgba(255, 255, 255, 0.2);
+  --badge-text: #FFFFFF;
+  --table-header-bg: rgba(0, 0, 0, 0.15);
+  --table-border: rgba(255, 255, 255, 0.2);
+}
+
+/* Global Transition for smooth theme switching */
+*, *::before, *::after {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Transida Dual Mode Component Classes */
+@layer components {
+  /* Transida Dual Card */
+  .transida-card {
+    background-color: var(--card-color) !important;
+    border: 1px solid var(--card-border) !important;
+    color: var(--card-text) !important;
+    border-radius: 4px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  }
+  .transida-card:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Dual Mode Primary Button */
+  .transida-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background-color: var(--btn-bg) !important;
+    color: var(--btn-text) !important;
+    border: 1.5px solid var(--btn-border) !important;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .transida-btn-primary:hover {
+    background-color: var(--btn-hover-bg) !important;
+    color: var(--btn-hover-text) !important;
+  }
+
+  /* Dual Mode Secondary Button */
+  .transida-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background-color: transparent !important;
+    color: var(--btn-text) !important;
+    border: 1.5px solid var(--btn-border) !important;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+  }
+  .transida-btn-secondary:hover {
+    background-color: var(--btn-hover-bg) !important;
+    color: var(--btn-hover-text) !important;
+  }
+}
+
+/* Red mode & Light mode dynamic page styling */
+body.light-mode .theme-bg-base {
+  background-color: #FFFFFF !important;
+  color: #111111 !important;
+}
+body.light-mode .theme-card-base {
+  background-color: #E31E24 !important;
+  border-color: #C81E1E !important;
+  color: #FFFFFF !important;
+}
+body.light-mode .theme-heading {
+  color: #E31E24 !important;
+}
+body.light-mode .theme-subtext {
+  color: #555555 !important;
+}
+
+body.red-mode .theme-bg-base {
+  background-color: #E31E24 !important;
+  color: #FFFFFF !important;
+}
+body.red-mode .theme-card-base {
+  background-color: #FFFFFF !important;
+  border-color: #E5E7EB !important;
+  color: #111111 !important;
+}
+body.red-mode .theme-heading {
+  color: #FFFFFF !important;
+}
+body.red-mode .theme-subtext {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Keyboard focus */
+*:focus-visible {
+  outline: 2px solid var(--heading-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.toast-in {
+  animation: toast-in 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-in {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
