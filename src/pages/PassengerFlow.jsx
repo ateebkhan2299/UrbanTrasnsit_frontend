@@ -161,11 +161,11 @@ export default function PassengerFlow() {
       />
 
       {error && !loading ? (
-        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs">
+        <div className="bg-[#1F1F1F] rounded-2xl border border-[#2A2A2A] shadow-xs">
           <ErrorState message={error} onRetry={load} />
         </div>
       ) : loading ? (
-        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs">
+        <div className="bg-[#1F1F1F] rounded-2xl border border-[#2A2A2A] shadow-xs">
           <Loading label="Loading passenger analytics..." />
         </div>
       ) : (

@@ -117,10 +117,10 @@ const TONES = {
   red: 'text-red-400',
 };
 
-const surface = (dark) =>
-  dark ? 'bg-[#141414] border-[#2A2A2A] text-slate-200' : 'bg-white border-slate-200 text-slate-800';
-const muted = (dark) => (dark ? 'text-slate-400' : 'text-slate-500');
-const hairline = (dark) => (dark ? 'border-[#2A2A2A]' : 'border-slate-200');
+const surface = () =>
+  'bg-[#1F1F1F] border-[#2A2A2A] text-slate-200';
+const muted = () => 'text-slate-400';
+const hairline = () => 'border-[#2A2A2A]';
 
 function renderIcon(icon, size = 16) {
   if (!icon) return null;
@@ -148,7 +148,7 @@ export function PageHeader({ title, subtitle, icon, actions, children, dark }) {
           </span>
         )}
         <div className="min-w-0">
-          <h1 className={`truncate text-2xl font-bold ${dark ? 'text-slate-100' : 'text-slate-900'}`}>
+          <h1 className="truncate text-2xl font-bold text-white">
             {title || 'Page Header'}
           </h1>
           {subtitle && <p className={`mt-1 text-sm ${muted(dark)}`}>{subtitle}</p>}
@@ -257,7 +257,7 @@ export function EmptyState({ title, message, icon, action, children, dark }) {
       className={`flex flex-col items-center justify-center gap-2 rounded-lg border p-8 text-center ${surface(dark)}`}
     >
       {icon && <div className={muted(dark)}>{renderIcon(icon, 32)}</div>}
-      <h3 className={`font-bold ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{title || 'No Data'}</h3>
+      <h3 className="font-bold text-slate-200">{title || 'No Data'}</h3>
       <p className={`max-w-md text-sm ${muted(dark)}`}>{message || 'There is no data to display right now.'}</p>
       {action &&
         (typeof action === 'function' ? (
@@ -328,7 +328,7 @@ export function Modal({
         className={`w-full ${WIDTHS[maxWidth] || maxWidth || 'max-w-2xl'} rounded-xl border shadow-2xl ${surface(dark)}`}
       >
         <div className={`flex items-center justify-between border-b px-5 py-4 ${hairline(dark)}`}>
-          <h2 className={`text-lg font-bold ${dark ? 'text-slate-100' : 'text-slate-900'}`}>{title}</h2>
+          <h2 className="text-lg font-bold text-slate-100">{title}</h2>
           <button
             type="button"
             aria-label="Close"
@@ -407,9 +407,7 @@ export function SearchInput({ value, onChange, placeholder, dark, className = ''
       value={value ?? ''}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder || 'Search...'}
-      className={`rounded-lg border px-3 py-2 text-sm outline-none focus:border-sky-500 ${
-        dark ? 'border-[#2A2A2A] bg-[#141414] text-slate-200 placeholder-slate-500' : 'border-slate-300 bg-white text-slate-800'
-      } ${className}`}
+      className={`rounded-lg border px-3 py-2 text-sm outline-none focus:border-sky-500 border-[#2A2A2A] bg-[#141414] text-slate-200 placeholder-slate-500 ${className}`}
       {...rest}
     />
   );
@@ -420,12 +418,12 @@ export function SearchInput({ value, onChange, placeholder, dark, className = ''
 // ---------------------------------------------------------------------------
 
 export const INPUT_CLASS =
-  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 outline-none focus:border-sky-500';
+  'w-full rounded-lg border border-[#2A2A2A] bg-[#141414] px-3 py-2 text-sm text-slate-200 outline-none focus:border-sky-500';
 
 export function Field({ label, children, className = '' }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
+      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">{label}</span>
       {children}
     </label>
   );
